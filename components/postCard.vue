@@ -4,7 +4,7 @@
       <div class="post" v-for="post in posts" :key="post.id">
         <div class="image">
           <img
-            src="{{post.poster}}"
+            :src="post.poster.url"
             class="post__image"
             :alt="post.title"
           />
@@ -35,7 +35,7 @@
       <div class="empty__report">
         <h5>You have no posts yet</h5>
         <button class="nav__link nav__link--long">
-          <nuxt-link to="/{{ post.id  }}">View Episode Info</nuxt-link>
+          <nuxt-link to="/post.id">View Episode Info</nuxt-link>
         </button>
       </div>
     </div>
@@ -45,9 +45,7 @@
 <script>
 export default {
   name: "post-card",
-  props: {
-    incidents: Array
-  },
+  props: ['posts'],
   methods: {
     emitEvent(post) {
       this.$emit("deletePost", post);
