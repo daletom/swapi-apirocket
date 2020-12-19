@@ -5,10 +5,11 @@
 </template>
 
 <script>
-//import postCard from "@/components/postCard.vue";
+import postCard from "@/components/postCard.vue";
 
 export default {
   components: {
+	  postCard
   },
   data () {
     return {
@@ -18,8 +19,8 @@ export default {
   },
   methods: {
     async getPosts() {
-      let res = await this.$store.dispatch('getPosts')
-      this.posts = res.data.data.posts;
+	  let res = await this.$store.dispatch('getPosts')
+	  this.posts = res;
     }
   },
   mounted() {
