@@ -1,10 +1,12 @@
 <template>
   <div>
-    <div class="posts__container" v-if="posts.length > 0">
-      <div class="post" v-for="post in posts" :key="post.id">
+    <div class="posts__container flex flex-wrap" v-if="posts.length > 0">
+      <div class="post xs:w-full md:w-1/3 px-2 xs:mb-6 md:mb-12" v-for="post in posts" :key="post.id">
         <div class="image">
           <img
-            :src="post.poster.url"
+            :src="post.poster.url + '?w=400&h=600&fit=fill&fill=color&fill-color=white&auto=format,compress'"
+            :imgixParams="{fit:'crop'}"
+            sizes="(min-width: 768px) 30vw, 100vw"
             class="post__image"
             :alt="post.title"
           />
@@ -43,12 +45,30 @@
 </template>
 
 <script>
+import VueImgix from '~/plugins/vue-imgix.js'
+
 export default {
   name: "post-card",
-  props: ['posts'],
+  props: {
+    post: {
+      type: Object,
+      default: null
+    },
+    posts: {
+      type: Array,
+      default: null
+    },
+    imgixParams: {
+      type: String,
+      default: null
+    }
+  },
   methods: {
     emitEvent(post) {
       this.$emit("deletePost", post);
+    },
+    imageSrc() {
+      return (new URL(this.post.poster.url)).pathname
     }
   }
 };
