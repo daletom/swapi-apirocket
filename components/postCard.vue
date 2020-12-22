@@ -3,22 +3,14 @@
     <div class="posts__container flex flex-wrap" v-if="posts.length > 0">
       <div class="post xs:w-full md:w-1/3 px-2 xs:mb-6 md:mb-12" v-for="post in posts" :key="post.id">
         <div class="image">
-          <img
-            :src="post.poster.url + '?w=400&h=600&fit=fill&fill=color&fill-color=white&auto=format,compress'"
-            :imgixParams="{fit:'crop'}"
+          <ix-img
+            :src="'0h60t5aq/Swapi/' + post.poster.fileName"
+            :imgixParams="{fit:'crop', crop:'bottom', ar:'1:1'}"
             sizes="(min-width: 768px) 30vw, 100vw"
             class="post__image"
             :alt="post.title"
           />
         </div>
-        <p>
-          <span class="paragraph__title">Title</span>
-          : {{ post.title }}
-        </p>
-        <p>
-          <span class="paragraph__title">Episode ID</span>
-          : {{ post.episodeId }}
-        </p>
         <p>
           <span class="paragraph__title">Date</span>
           : {{ post.releaseDate }}

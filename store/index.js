@@ -12,19 +12,20 @@ export const actions = {
     async getPosts() {
 
 		const myQuery = `query MyQuery {
-			AllSwapis {
-			  episodeId
-			  director
-			  id
-			  openingCrawl
-			  poster {
-				url
-			  }
-			  producer
-			  releaseDate
-			  title
-			}
-		  }
+				AllSwapis {
+					createdAt
+					director
+					episodeId
+					id
+					openingCrawl
+					poster {
+						fileName
+					}
+					producer
+					releaseDate
+					title
+				}
+			}			
 		`;
 
 		const options = {
@@ -39,5 +40,5 @@ export const actions = {
 				
 		let res = await this.$axios.request(options)
         return res.data.data.AllSwapis;
-      }
+			}
 }
