@@ -1,34 +1,33 @@
 <template>
-  <div class="container" :posts="posts">
-    <div class="posts__container flex flex-wrap" v-if="posts.length > 0">
-      <div class="post xs:w-full md:w-1/3 px-2 xs:mb-6 md:mb-12" v-for="post in posts" :key="post.id">
-        <p>
-          <span class="paragraph__title">Title</span>
-          : {{ post.title }}
-        </p>
-      </div>
-    </div>
+  <div class="container" >
+      <crawl :post="posts"></crawl>
   </div>
 </template>
 
 <script>
+import crawl from "@/components/crawl.vue";
+
 export default {
+  components: {
+    crawl
+  },
   data () {
     return {
-      posts: []
+      posts: {}
     }
   },
   methods: {
     async getFilm() {
-	  let res = await this.$store.dispatch('getFilm', '5fe15b453588f000088eb3de')
-	  this.posts = res;
+	  let res = await this.$store.dispatch('getFilm', this.$route.params.id)
+    this.posts = res;
+    console.log(this.posts)
     }
   },
-  computed: {
+  /*computed: {
     film() {
       return this.posts.find(v => v.id == this.$route.params.id)
     }
-  },
+  },*/
   mounted() {
     this.getFilm()
   }

@@ -41,10 +41,10 @@ export const actions = {
 		let res = await this.$axios.request(options)
         return res.data.data.AllSwapis;
 			},
-			async getFilm($id) {
-
+			async getFilm({commit}, film) {
+				
 				const myQuery = `query MyQuery {
-					Swapi(id: "${$id}") {
+					Swapi(id: "${film}") {
 						director
 						episodeId
 						id
@@ -59,7 +59,7 @@ export const actions = {
 				}
 					
 				`;
-		
+				
 				const options = {
 					method: 'POST',
 					url: 'https://graphql.apirocket.io/',

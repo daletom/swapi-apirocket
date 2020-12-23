@@ -9,7 +9,7 @@ import postCard from "@/components/postCard.vue";
 
 export default {
   components: {
-	  postCard
+    postCard
   },
   data () {
     return {
