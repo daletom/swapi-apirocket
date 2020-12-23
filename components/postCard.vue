@@ -8,9 +8,17 @@
             :imgixParams="{fit:'crop', crop:'bottom', ar:'1:1'}"
             sizes="(min-width: 768px) 30vw, 100vw"
             class="post__image"
-            :alt="post.title"
+            :alt="post.title + ' Movie Poster'"
           />
         </div>
+        <p>
+          <span class="paragraph__title">Title</span>
+          : {{ post.title }}
+        </p>
+        <p>
+          <span class="paragraph__title">Episode ID</span>
+          : {{ post.episodeId }}
+        </p>
         <p>
           <span class="paragraph__title">Date</span>
           : {{ post.releaseDate }}
@@ -18,10 +26,6 @@
         <p>
           <span class="paragraph__title">Director</span>
           : {{ post.director }}
-        </p>
-        <p>
-          <span class="paragraph__title">Producer(s)</span>
-          : {{ post.producer }}
         </p>
       </div>
     </div>
@@ -58,9 +62,6 @@ export default {
   methods: {
     emitEvent(post) {
       this.$emit("deletePost", post);
-    },
-    imageSrc() {
-      return (new URL(this.post.poster.url)).pathname
     }
   }
 };
