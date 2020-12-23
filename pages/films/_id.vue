@@ -1,30 +1,35 @@
 <template>
-  <div class="container">
-    <post-card :posts="posts"></post-card>
+  <div class="container" >
+      <crawl :post="posts"></crawl>
   </div>
 </template>
 
 <script>
-import postCard from "@/components/postCard.vue";
+import crawl from "@/components/crawl.vue";
 
 export default {
   components: {
-    postCard
+    crawl
   },
   data () {
     return {
-      id: this.$route.params.id,
-      posts: []
+      posts: {}
     }
   },
   methods: {
-    async getPosts() {
-	  let res = await this.$store.dispatch('getPosts')
-	  this.posts = res;
+    async getFilm() {
+	  let res = await this.$store.dispatch('getFilm', this.$route.params.id)
+    this.posts = res;
+    console.log(this.posts)
     }
   },
+  /*computed: {
+    film() {
+      return this.posts.find(v => v.id == this.$route.params.id)
+    }
+  },*/
   mounted() {
-    this.getPosts()
+    this.getFilm()
   }
 }
 </script>

@@ -8,9 +8,17 @@
             :imgixParams="{fit:'crop', crop:'bottom', ar:'1:1'}"
             sizes="(min-width: 768px) 30vw, 100vw"
             class="post__image"
-            :alt="post.title"
+            :alt="post.title + ' Movie Poster'"
           />
         </div>
+        <p>
+          <span class="paragraph__title">Title</span>
+          : {{ post.title }}
+        </p>
+        <p>
+          <span class="paragraph__title">Episode ID</span>
+          : {{ post.episodeId }}
+        </p>
         <p>
           <span class="paragraph__title">Date</span>
           : {{ post.releaseDate }}
@@ -19,10 +27,9 @@
           <span class="paragraph__title">Director</span>
           : {{ post.director }}
         </p>
-        <p>
-          <span class="paragraph__title">Producer(s)</span>
-          : {{ post.producer }}
-        </p>
+        <button class="nav__link nav__link--long button">
+          <nuxt-link :to="`/films/${post.id}`">View Episode Crawl</nuxt-link>
+        </button>
       </div>
     </div>
     <div class="posts__container" v-else>
@@ -58,12 +65,19 @@ export default {
   methods: {
     emitEvent(post) {
       this.$emit("deletePost", post);
-    },
-    imageSrc() {
-      return (new URL(this.post.poster.url)).pathname
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}</style>
